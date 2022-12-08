@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bo.khachhangbo;
+import nl.captcha.Captcha;
 
 /**
  * Servlet implementation class login
  */
 @WebServlet("/login")
 public class login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 12;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,25 +35,46 @@ public class login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
 		khachhangbo kh = new khachhangbo();
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String answer = request.getParameter("answer");
 		session.setAttribute("makh", kh.getMaKhachHang(username));
-		if (username != null && password != null) {
-			if (kh.checkKhachHang(username, password) == 1) {
+		
+		if(session.getAttribute("count") == null)
+			session.setAttribute("count", 0);
+		long count = ((Number) session.getAttribute("count")).longValue();
+		
+		if (answer == null) {
+			
+			if ((kh.checkKhachHang(username, password) == 1)) {
 				if (session.getAttribute("DangNhap") != null)
 					session.setAttribute("DangNhap", "");
 				session.setAttribute("DangNhap", kh.getTenKhachHang(username, password));
 				response.sendRedirect("ChuDeSach");
 			} else {
+				
+				session.setAttribute("count", ++count);
 				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 				rd.forward(request, response);
 			}
 		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-			rd.forward(request, response);
+
+			Captcha captcha = (Captcha) session.getAttribute(Captcha.NAME);
+			if ((kh.checkKhachHang(username, password) == 1) && captcha.isCorrect(answer)) {
+				if (session.getAttribute("DangNhap") != null)
+					session.setAttribute("DangNhap", "");
+				session.setAttribute("DangNhap", kh.getTenKhachHang(username, password));
+				response.sendRedirect("ChuDeSach");
+			} else {
+				session.setAttribute("count", ++count);
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.forward(request, response);
+			}
 		}
+			
 	}
 
 	/**

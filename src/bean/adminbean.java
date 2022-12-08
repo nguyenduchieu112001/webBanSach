@@ -1,15 +1,15 @@
 package bean;
 
-public class taikhoanbean {
+public class adminbean {
 
 	private String TenDangNhap;
 	private String MatKhau;
 	private boolean Quyen;
-	public taikhoanbean() {
+	public adminbean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public taikhoanbean(String tenDangNhap, String matKhau, boolean quyen) {
+	public adminbean(String tenDangNhap, String matKhau, boolean quyen) {
 		super();
 		TenDangNhap = tenDangNhap;
 		MatKhau = matKhau;

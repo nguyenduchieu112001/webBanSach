@@ -1,6 +1,5 @@
 package dao;
 
-//import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -14,8 +13,6 @@ public class hoadondao {
 			String sql = "insert into hoadon values (?, ?, ?)";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
 			cmd.setInt(1, mkh);
-//			long millis = System.currentTimeMillis();
-//			Date ngaymua = new Date(millis);
 			long millis=System.currentTimeMillis();  
 	        java.sql.Date ngaymua=new java.sql.Date(millis);  
 			cmd.setDate(2, ngaymua);
@@ -34,12 +31,12 @@ public class hoadondao {
 			ArrayList<Integer> ds = new ArrayList<Integer>();
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
-			String getMahd = "select MaHoaDon from hoadon where makh = ?";
+			String getMahd = "select max(MaHoaDon) from hoadon where makh = ?";
 			PreparedStatement cmd = cs.cn.prepareStatement(getMahd);
 			cmd.setInt(1, mkh);
 			ResultSet rs2 = cmd.executeQuery();
 			while (rs2.next()) {
-				ds.add(rs2.getInt("MaHoaDon"));
+				ds.add(rs2.getInt(1));
 			}
 			rs2.close();
 			cs.cn.close();

@@ -274,7 +274,7 @@ h4 {
 
 			<div class="book-container">
 				<c:forEach items="${dsSach }" var="s">
-					<div class="box-card" <%-- onclick="location.href='GioHang?act=add&ms=${s.getMasach()}&ts=${s.getTensach()}&gia=${s.getGia()}&anh=${s.getAnh()}&makh=${makh}'" --%>>
+					<div class="box-card">
 						<div class="card">
 							<img src="${s.getAnh() }" alt="avatar" class="card-img" />
 

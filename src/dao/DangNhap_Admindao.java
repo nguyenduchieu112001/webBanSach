@@ -3,16 +3,16 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class taikhoandao {
+public class DangNhap_Admindao {
 
-	public int getTaiKhoan(String tendn, String mk){
+	public int checkDangNhap(String tdn, String mk) {
 		try {
 			// B1: kết nối csdl
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
 			String sql = "select count(*) from DangNhap where TenDangNhap = ? and MatKhau = ?";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
-			cmd.setString(1, tendn);
+			cmd.setString(1, tdn);
 			cmd.setString(2, mk);
 			ResultSet rs = cmd.executeQuery();
 			// B3: Duyệt qua tập dữ liệu lấy về
@@ -28,4 +28,5 @@ public class taikhoandao {
 		}
 		return 0;
 	}
+
 }

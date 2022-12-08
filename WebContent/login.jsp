@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -31,6 +31,7 @@ body {
 	background: white;
 	border-radius: 10px;
 	box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+	min-height: 450px;
 }
 
 .center h1 {
@@ -135,6 +136,18 @@ input[type="submit"]:hover {
 .signup_link a:hover {
 	text-decoration: underline;
 }
+
+.captcha {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: -10px;
+}
+
+.captcha img {
+	width: 160px;
+}
 </style>
 <title>Insert title here</title>
 </head>
@@ -144,12 +157,23 @@ input[type="submit"]:hover {
 		<form action="login" method="post">
 			<div class="txt_field">
 				<input type="text" name="username" value="" required> <span></span>
-				<label>Username</label>
+				<label>UserName</label>
 			</div>
 			<div class="txt_field">
 				<input type="password" name="password" value="" required> <span></span>
 				<label>Password</label>
 			</div>
+			<c:if test="${count > 3 }">
+				<div class="captcha">
+					<div class="txt_field">
+						<input style="width: 150px" type="text" name="answer" value=""
+							required> <span></span> <label>Enter Captcha</label>
+					</div>
+					<div style="margin-top: 6px;">
+						<img src="simpleCaptcha.jpg" />
+					</div>
+				</div>
+			</c:if>
 			<div class="pass">Forgot Password?</div>
 			<input type="submit" value="Login">
 			<div class="signup_link">
@@ -157,5 +181,6 @@ input[type="submit"]:hover {
 			</div>
 		</form>
 	</div>
+
 </body>
 </html>

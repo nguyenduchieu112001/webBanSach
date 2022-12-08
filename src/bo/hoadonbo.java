@@ -14,4 +14,9 @@ public class hoadonbo {
 	public ArrayList<Integer> getMaHoaDon(int mkh){
 		return hd.getMaHoaDon(mkh);
 	}
+	
+//	public static void main(String[] ts) {
+//		hoadonbo hd = new hoadonbo();
+//		System.out.println(hd.getMaHoaDon(23));
+//	}
 }

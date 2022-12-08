@@ -1,9 +1,14 @@
 package bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class chitiethoadonbean {
+public class chitiethoadonbean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int makh;
 	private long soluong;
 	private Date ngaymua;
@@ -13,7 +18,6 @@ public class chitiethoadonbean {
 	private boolean damua;
 	public chitiethoadonbean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public chitiethoadonbean(int makh, long soluong, Date ngaymua, String anh, String tensach, long gia, boolean damua) {

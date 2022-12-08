@@ -25,6 +25,11 @@ public class loaibean {
 	public void setTenloai(String tenloai) {
 		this.tenloai = tenloai;
 	}
+
+	@Override
+	public String toString() {
+		return "loaibean [maloai=" + maloai + ", tenloai=" + tenloai + "]";
+	}
 	
 	
 }

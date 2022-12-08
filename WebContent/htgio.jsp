@@ -142,7 +142,8 @@ img {
 	right: 0;
 	left: 0;
 }
-.pay-ctn{
+
+.pay-ctn {
 	width: 80%;
 	margin: 0 10%;
 	display: flex;
@@ -221,7 +222,7 @@ img {
 							<th style="width: 30%">Title</th>
 							<th style="width: 15%">Price</th>
 							<th style="width: 10%">Quantity</th>
-							<th style="width: 18%"> </th>
+							<th style="width: 18%"></th>
 						</tr>
 					</thead>
 
@@ -252,17 +253,10 @@ img {
 										id=${h.getMaSach() } value=${h.getSoluong() }></td>
 									<td class="actions" data-th="">
 										<div class="text-right thtac">
-											<!--  <button
-										class="btn btn-white border-secondary bg-white btn-md mb-2">-->
 											<a class="up_del" href="#"
 												onclick="location.href='GioHang?act=update&soluong='+document.getElementById('${h.getMaSach() }').value+'&ms=${h.getMaSach() }'">
-												Cập nhật </a>
-											<!-- </button> -->
-											<!-- <button
-										class="btn btn-white border-secondary bg-white btn-md mb-2"> -->
-											<a class="up_del"
+												Cập nhật </a> <a class="up_del"
 												href="GioHang?act=remove&ms=${h.getMaSach() }">Trả lại</a>
-											<!-- </button> -->
 										</div>
 									</td>
 								</tr>
@@ -270,45 +264,43 @@ img {
 						</c:if>
 					</tbody>
 				</table>
-				
+
 			</div>
 
 		</div>
 	</div>
 	<div class="payment">
-					<div class="pay-ctn">
-						<div class="row mt-4 d-flex align-items-center">
-							<div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-right"
-								style="display: flex; padding: 10px 50px 10px 120px;">
-								<c:if test="${not empty gio }">
-									<a href="ChuDeSach"
-										class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
-										style="margin: 10px;">Tiếp tục mua hàng</a>
-									<a href="GioHang?act=clear"
-										class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
-										style="margin: 10px;">Trả lại tất cả</a>
-									<a href="LichSu?act=thanhtoan&mkh=${makh }"
-										class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
-										style="margin: 10px;">Thanh toán</a>
-								</c:if>
-								<c:if test="${empty gio }">
-									<p>Giỏ hàng đang trống. Mời bạn</p>
-									<a href="ChuDeSach"
-										class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
-										style="margin: 10px;">Chọn mua hàng</a>
-								</c:if>
-							</div>
-						</div>
-						<div class="float-right text-right">
-							<c:if test="${not empty gio }">
-								<span>(Tổng số: <b>${ds.size() }</b> sản phẩm)
-								</span>
-								<h2>
-									<b>Tổng tiền: ${gio.TongTien() } VNĐ </b>
-								</h2>
-							</c:if>
-						</div>
-					</div>
+		<div class="pay-ctn">
+			<div class="row mt-4 d-flex align-items-center">
+				<div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-right"
+					style="display: flex; padding: 10px 50px 10px 120px;">
+					<c:if test="${not empty gio }">
+						<a href="ChuDeSach" class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
+							style="margin: 10px;">Tiếp tục mua hàng</a>
+						<a href="GioHang?act=clear"
+							class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
+							style="margin: 10px;">Trả lại tất cả</a>
+						<a href="LichSu?act=thanhtoan&mkh=${makh }"
+							class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
+							style="margin: 10px;">Thanh toán</a>
+					</c:if>
+					<c:if test="${empty gio }">
+						<p>Giỏ hàng đang trống. Mời bạn</p>
+						<a href="ChuDeSach" class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
+							style="margin: 10px;">Chọn mua hàng</a>
+					</c:if>
 				</div>
+			</div>
+			<div class="float-right text-right">
+				<c:if test="${not empty gio }">
+					<span>(Tổng số: <b>${ds.size() }</b> sản phẩm)
+					</span>
+					<h2>
+						<b>Tổng tiền: ${gio.TongTien() } VNĐ </b>
+					</h2>
+				</c:if>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
